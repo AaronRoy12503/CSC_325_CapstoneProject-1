@@ -28,18 +28,22 @@ public class ForeverHomeFinderController {
     @FXML
     private Label passwordText;
     @FXML
+    private Label passwordConfirmText;
+    @FXML
     private Label confirmationText;
 
     @FXML
     private TextField userName;
     @FXML
     private TextField visiblePassword;
-
+    @FXML
+    private TextField visiblePasswordConfirm;
     @FXML
     private PasswordField password;
     @FXML
+    private PasswordField passwordConfirm;
+    @FXML
     private CheckBox passwordVisibleBox;
-
     //Universal Integer Width Variable
     private final int TEXTBOXWIDTH = 200;
 
@@ -49,7 +53,7 @@ public class ForeverHomeFinderController {
     private ForeverHomeFinderUser user = new ForeverHomeFinderUser();
 
     public void initialize() {
-        welcomeText.setText("Welcome to the Forever Home Finder App!\n   Please press the login button to login! \n\nIf you haven't created an account with us, \n                      please sign in.");
+        welcomeText.setText("Welcome to the Forever Home Finder App!\n   Please press the login button to login! \nIf you haven't created an account with us, \nplease sign in.");
     }
 
     @FXML
@@ -69,6 +73,7 @@ public class ForeverHomeFinderController {
         password.setVisible(true);
         usernameText.setVisible(true);
         passwordText.setVisible(true);
+        passwordConfirmText.setVisible(false);
 
         //Will set the width of the Username box
         userName.prefWidth(TEXTBOXWIDTH);
@@ -83,6 +88,8 @@ public class ForeverHomeFinderController {
         //Will set width of the visiblePassword Box
         visiblePassword.setMaxWidth(TEXTBOXWIDTH);
 
+        visiblePasswordConfirm.setMaxWidth(TEXTBOXWIDTH);
+
         //Title text for username and password elements respectively
         usernameText.setText("Username: ");
         passwordText.setText("Password: ");
@@ -90,8 +97,11 @@ public class ForeverHomeFinderController {
         //Will set the same text properties as the password variable for the visiblePassword
         password.textProperty().bindBidirectional(visiblePassword.textProperty());
 
+        passwordConfirm.textProperty().bindBidirectional(visiblePasswordConfirm.textProperty());
+
         if(wentBackToScreen){
             visiblePassword.setVisible(false);
+            visiblePasswordConfirm.setVisible(false);
         }
     }
 
@@ -106,9 +116,13 @@ public class ForeverHomeFinderController {
         confirmButton2.setVisible(false);
 
         passwordVisibleBox.setVisible(false);
+        visiblePasswordConfirm.setVisible(false);
 
         userName.setVisible(false);
         password.setVisible(false);
+        passwordConfirmText.setVisible(false);
+
+        passwordConfirm.setVisible(false);
 
         usernameText.setVisible(false);
         passwordText.setVisible(false);
@@ -117,13 +131,17 @@ public class ForeverHomeFinderController {
 
         visiblePassword.setVisible(false);
 
+        visiblePasswordConfirm.setVisible(false);
+
         wentBackToScreen = true;//Boolean value to switch password visibility to be hidden
         passwordVisibleBox.setSelected(false); //Will uncheck the visible password box
+        visiblePasswordConfirm.setSelected(false); //Will uncheck the visible password box
 
         //Will clear the text from the username and password boxes
         userName.clear();
         password.clear();
         visiblePassword.clear();
+        visiblePasswordConfirm.clear();
     }
 
     @FXML
@@ -132,10 +150,16 @@ public class ForeverHomeFinderController {
             //Show the TextField and hide the PasswordField
             visiblePassword.setVisible(true);
             password.setVisible(false);
+
+            passwordConfirm.setVisible(false);
+            visiblePasswordConfirm.setVisible(true);
         } else {
             //Will do the vice versa here
             visiblePassword.setVisible(false);
             password.setVisible(true);
+
+            passwordConfirm.setVisible(true);
+            visiblePasswordConfirm.setVisible(false);
         }
     }
 
@@ -154,6 +178,9 @@ public class ForeverHomeFinderController {
         password.setVisible(true);
         usernameText.setVisible(true);
         passwordText.setVisible(true);
+        passwordConfirmText.setVisible(true);
+
+        passwordConfirmText.setText("Confirm Password: ");
 
         //Will set the width of the Username box
         userName.prefWidth(TEXTBOXWIDTH);
@@ -165,8 +192,15 @@ public class ForeverHomeFinderController {
         password.setMaxWidth(TEXTBOXWIDTH);
         password.requestLayout();
 
+        passwordConfirm.prefWidth(TEXTBOXWIDTH);
+        passwordConfirm.setMaxWidth(TEXTBOXWIDTH);
+        passwordConfirm.requestLayout();
+
+        passwordConfirm.setVisible(true);
+
         //Will set width of the visiblePassword Box
         visiblePassword.setMaxWidth(TEXTBOXWIDTH);
+        visiblePasswordConfirm.setMaxWidth(TEXTBOXWIDTH);
 
         //Title text for username and password elements respectively
         usernameText.setText("Username: ");
@@ -175,8 +209,11 @@ public class ForeverHomeFinderController {
         //Will set the same text properties as the password variable for the visiblePassword
         password.textProperty().bindBidirectional(visiblePassword.textProperty());
 
+        passwordConfirm.textProperty().bindBidirectional(visiblePasswordConfirm.textProperty());
+
         if(wentBackToScreen){
             visiblePassword.setVisible(false);
+            visiblePasswordConfirm.setVisible(false);
         }
     }
 
